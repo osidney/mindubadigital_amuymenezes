@@ -64,7 +64,7 @@ export const navLinks = [
 
 export const heroSlides = [
   {
-    image: '/images/slide1.jpg',
+    image: '/images/slide1.webp',
     kicker: 'Seguro DPVAT · Indenizações',
     titleStart: 'Sofreu um',
     titleScript: 'acidente?',
@@ -73,7 +73,7 @@ export const heroSlides = [
     ctaMessage: whatsappMessages.acidente,
   },
   {
-    image: '/images/slide2.jpg',
+    image: '/images/slide2.webp',
     kicker: 'Direito Previdenciário · INSS',
     titleStart: 'Deseja se',
     titleScript: 'aposentar?',
@@ -82,7 +82,7 @@ export const heroSlides = [
     ctaMessage: whatsappMessages.aposentadoria,
   },
   {
-    image: '/images/slide3.jpg',
+    image: '/images/slide3.webp',
     kicker: 'Securitário & Previdenciário',
     titleStart: 'Advogados',
     titleScript: 'especialistas',

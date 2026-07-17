@@ -6,7 +6,11 @@ import Icon from './Icon.astro';
 <section class="hero" id="home" aria-label="Destaques">
   {heroSlides.map((slide, i) => (
     <div class:list={['hero__slide', { 'is-active': i === 0 }]} aria-hidden={i !== 0}>
-      <div class="hero__bg" style={`background-image:url('${slide.image}')`}></div>
+      <div
+        class="hero__bg"
+        style={i === 0 ? `background-image:url('${slide.image}')` : undefined}
+        data-bg={i !== 0 ? slide.image : undefined}
+      ></div>
       <div class="hero__veil"></div>
       <div class="container">
         <div class="hero__content">

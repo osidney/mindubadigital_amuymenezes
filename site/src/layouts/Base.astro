@@ -12,7 +12,9 @@ interface Props {
 }
 
 const { title = site.name, description = site.description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, site.url).href;
+// Origem base: vem do astro.config (PUBLIC_SITE_URL) ou cai na URL de produção.
+const base = Astro.site?.origin ?? site.url;
+const canonical = new URL(Astro.url.pathname, base).href;
 ---
 
 <!doctype html>
@@ -35,19 +37,27 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`${site.url}/images/og-image.jpg`} />
+    <meta property="og:image" content={`${base}/images/og-image.jpg`} />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image" content={`${base}/images/og-image-square.jpg`} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="400" />
     <meta property="og:image:alt" content="Amuy Menezes Advocacia — Proteger seu direito é garantir seu amanhã" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${site.url}/images/og-image.jpg`} />
+    <meta name="twitter:image" content={`${base}/images/og-image.jpg`} />
 
     <link rel="preload" href="/fonts/marcellus-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/plus-jakarta-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/whisper-400.woff2" as="font" type="font/woff2" crossorigin />
+
+    <slot name="head" />
 
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
@@ -122,10 +132,22 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
         let current = 0;
         let timer: number;
 
+        // Aplica o fundo dos slides não iniciais sob demanda (economia no carregamento)
+        const ensureBg = (slide: Element | undefined) => {
+          const bg = slide?.querySelector<HTMLElement>('.hero__bg[data-bg]');
+          if (bg) {
+            bg.style.backgroundImage = `url('${bg.dataset.bg}')`;
+            bg.removeAttribute('data-bg');
+          }
+        };
+        // Depois do carregamento, pré-busca os demais em segundo plano
+        window.addEventListener('load', () => slides.forEach(ensureBg));
+
         const goTo = (index: number) => {
           slides[current]?.classList.remove('is-active');
           dots[current]?.classList.remove('is-active');
           current = (index + slides.length) % slides.length;
+          ensureBg(slides[current]);
           slides[current]?.classList.add('is-active');
           // reinicia a animação da barra de progresso do dot
           const dot = dots[current];
@@ -184,6 +206,23 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
         { rootMargin: '-45% 0px -50% 0px' },
       );
       sections.forEach((s) => spyObserver.observe(s));
+
+      // ---------- Fundos de seção sob demanda (economia no carregamento inicial) ----------
+      const lazyBgObserver = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target as HTMLElement;
+          if (el.dataset.bg) {
+            el.style.backgroundImage = `url('${el.dataset.bg}')`;
+            el.removeAttribute('data-bg');
+          }
+          el.classList.add('bg-loaded');
+          lazyBgObserver.unobserve(el);
+        }),
+        { rootMargin: '400px 0px' },
+      );
+      document.querySelectorAll('[data-bg]:not(.hero__bg), .about, .wa-panel, .testimonials, .footer')
+        .forEach((el) => lazyBgObserver.observe(el));
 
       // ---------- Ano corrente ----------
       document.querySelectorAll('[data-year]').forEach((el) => {

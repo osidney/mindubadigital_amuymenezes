@@ -738,9 +738,12 @@ h1, h2, h3, h4 {
   position: absolute;
   top: 0; right: 0; bottom: 0;
   width: 46%;
-  background: url('/images/about-bg.jpg') right center / contain no-repeat;
   opacity: 0.09;
   pointer-events: none;
+}
+/* Fundo aplicado sob demanda (lazy) quando a seção se aproxima da tela */
+.about.bg-loaded::before {
+  background: url('/images/about-bg.webp') right center / contain no-repeat;
 }
 .about .container { position: relative; }
 .about__layout {
@@ -864,8 +867,11 @@ h1, h2, h3, h4 {
    ============================================================ */
 .testimonials {
   position: relative;
-  background: var(--ink-850) url('/images/testimonials-bg.png') center / cover no-repeat;
+  background: var(--ink-850);
   color: var(--cream);
+}
+.testimonials.bg-loaded {
+  background: var(--ink-850) url('/images/testimonials-bg.webp') center / cover no-repeat;
 }
 .testimonials::before {
   content: '';
@@ -989,8 +995,11 @@ h1, h2, h3, h4 {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/images/contact-bg.jpg') center / cover;
   opacity: 0.14;
+}
+/* Fundo aplicado sob demanda (lazy) quando a seção se aproxima da tela */
+.wa-panel.bg-loaded::before {
+  background: url('/images/contact-bg.webp') center / cover;
 }
 .wa-panel > * { position: relative; }
 .wa-panel__badge {
@@ -1046,8 +1055,12 @@ h1, h2, h3, h4 {
    ============================================================ */
 .footer {
   position: relative;
-  background: var(--ink-950) url('/images/footer-bg.jpg') center / cover no-repeat;
+  background: var(--ink-950);
   color: var(--text-light);
+}
+/* Fundo aplicado sob demanda (lazy) quando a seção se aproxima da tela */
+.footer.bg-loaded {
+  background: var(--ink-950) url('/images/footer-bg.webp') center / cover no-repeat;
 }
 .footer::before { content: ''; position: absolute; inset: 0; background: rgba(7, 7, 9, 0.93); }
 .footer > * { position: relative; }

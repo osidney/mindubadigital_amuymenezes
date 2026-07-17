@@ -7,11 +7,19 @@ Novo site do escritório Amuy Menezes Advocacia, construído com [Astro](https:/
 ```bash
 npm install        # instalar dependências
 npm run dev        # ambiente de desenvolvimento (http://localhost:4321)
-npm run build      # gera o site estático em dist/
+npm run build      # gera o site estático em dist/ (URLs de produção)
 npm run preview    # pré-visualiza o build de produção
+
+# Build de homologação (canonical/OG apontando para o domínio temporário):
+PUBLIC_SITE_URL="https://seu-dominio-temporario" npm run build
 ```
 
 O deploy é a pasta `dist/` — basta servir os arquivos estáticos (Netlify, Vercel, Cloudflare Pages, hospedagem comum etc.).
+
+O `dist/` já inclui um **`.htaccess`** (Apache/LiteSpeed) com compressão de texto e
+política de cache: assets com hash (`/_astro/`) por 1 ano imutável, fontes por 1 ano,
+imagens por 1 mês e HTML sempre revalidado. Ao subir os arquivos, inclua o `.htaccess`
+(ele é um arquivo oculto — verifique se o cliente de FTP o copiou).
 
 ## Estrutura
 
