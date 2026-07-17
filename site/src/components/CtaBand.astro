@@ -1,0 +1,22 @@
+---
+import { whatsappLink, whatsappMessages } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="cta-band" aria-label="Agendamento">
+  <div class="container">
+    <div class="cta-band__inner reveal">
+      <div class="cta-band__shape" style="background-image:url('/images/cta-shape.png')"></div>
+      <div class="cta-band__content">
+        <span class="cta-band__kicker">Atendimento Exclusivo</span>
+        <h2 class="cta-band__title">
+          Receba apoio jurídico confiável.<br />Agende sua reunião agora.
+        </h2>
+      </div>
+      <a class="btn btn--dark" href={whatsappLink(whatsappMessages.default)} target="_blank" rel="noopener noreferrer">
+        <Icon name="whatsapp" />
+        Quero Agendar
+      </a>
+    </div>
+  </div>
+</section>

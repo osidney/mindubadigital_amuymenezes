@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  kicker: string;
+  titleStart: string;
+  titleScript?: string;
+  titleEnd?: string;
+  lead?: string;
+  center?: boolean;
+}
+
+const { kicker, titleStart, titleScript, titleEnd, lead, center = false } = Astro.props;
+---
+
+<div class:list={['sec-title', { 'sec-title--center': center }]}>
+  <span class="sec-title__kicker"><Icon name="hammer" />{kicker}</span>
+  <h2 class="sec-title__title">
+    {titleStart}
+    {titleScript && <span class="script">{titleScript}</span>}
+    {titleEnd}
+  </h2>
+  {lead && <p class="sec-title__lead">{lead}</p>}
+</div>

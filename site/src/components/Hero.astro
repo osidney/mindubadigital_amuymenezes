@@ -1,0 +1,48 @@
+---
+import { heroSlides, whatsappLink } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="hero" id="home" aria-label="Destaques">
+  {heroSlides.map((slide, i) => (
+    <div class:list={['hero__slide', { 'is-active': i === 0 }]} aria-hidden={i !== 0}>
+      <div class="hero__bg" style={`background-image:url('${slide.image}')`}></div>
+      <div class="hero__veil"></div>
+      <div class="container">
+        <div class="hero__content">
+          <span class="hero__kicker hero__anim"><Icon name="hammer" />{slide.kicker}</span>
+          <h1 class="hero__title hero__anim">
+            {slide.titleStart} <span class="script">{slide.titleScript}</span>
+          </h1>
+          <p class="hero__text hero__anim">{slide.text}</p>
+          <div class="hero__cta hero__anim">
+            <a class="btn" href={whatsappLink(slide.ctaMessage)} target="_blank" rel="noopener noreferrer">
+              <Icon name="whatsapp" />
+              {slide.ctaLabel}
+            </a>
+            <a class="btn btn--ghost" href="#atuacao">
+              Áreas de Atuação
+              <Icon name="arrow-right" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <div class="hero__nav">
+    <div class="hero__dots" role="tablist" aria-label="Escolher destaque">
+      {heroSlides.map((slide, i) => (
+        <button
+          class:list={['hero__dot', { 'is-active': i === 0 }]}
+          role="tab"
+          aria-label={`Destaque ${i + 1}: ${slide.titleStart} ${slide.titleScript}`}
+        ></button>
+      ))}
+    </div>
+    <a class="hero__scroll" href="#atuacao">
+      Role para explorar
+      <Icon name="chevron-down" />
+    </a>
+  </div>
+</section>

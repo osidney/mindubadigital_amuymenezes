@@ -1,0 +1,30 @@
+---
+import { features, whatsappLink } from '../data/site';
+import Icon from './Icon.astro';
+
+const icons = ['calendar', 'hammer', 'shield'] as const;
+---
+
+<section class="features" aria-label="Como podemos ajudar">
+  <div class="container">
+    <div class="features__grid">
+      {features.map((feature, i) => (
+        <article class="feature-card reveal" data-delay={String(i)}>
+          <span class="feature-card__num">{feature.number}</span>
+          <div class="feature-card__icon"><Icon name={icons[i]} /></div>
+          <h3 class="feature-card__title">{feature.title}</h3>
+          <p class="feature-card__text">{feature.text}</p>
+          <a
+            class="feature-card__link"
+            href={whatsappLink(feature.message)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {feature.linkLabel}
+            <Icon name="arrow-right" />
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

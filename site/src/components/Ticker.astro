@@ -1,0 +1,15 @@
+---
+import { tickerItems } from '../data/site';
+import Icon from './Icon.astro';
+
+// Faixa duplicada para o loop infinito do marquee.
+const items = [...tickerItems, ...tickerItems];
+---
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    {items.map((item) => (
+      <span class="ticker__item"><Icon name="diamond" />{item}</span>
+    ))}
+  </div>
+</div>

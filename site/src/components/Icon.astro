@@ -1,0 +1,16 @@
+---
+interface Props {
+  name:
+    | 'hammer' | 'phone' | 'mail' | 'map-pin' | 'check' | 'arrow-right'
+    | 'chevron-down' | 'star' | 'quote' | 'play' | 'x' | 'shield'
+    | 'calendar' | 'file' | 'scale' | 'users' | 'diamond'
+    | 'whatsapp' | 'instagram' | 'facebook' | 'youtube';
+  class?: string;
+}
+
+const { name, class: className } = Astro.props;
+---
+
+<svg class={className} width="1em" height="1em" fill="currentColor" aria-hidden="true" focusable="false">
+  <use href={`#i-${name}`} />
+</svg>

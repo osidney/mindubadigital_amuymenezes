@@ -1,0 +1,75 @@
+---
+import { site, navLinks, whatsappLink, whatsappMessages } from '../data/site';
+import Icon from './Icon.astro';
+
+// Fora da home, as âncoras precisam apontar para "/#âncora".
+const isHome = Astro.url.pathname === '/';
+const hrefFor = (href: string) => (isHome || !href.startsWith('#') ? href : `/${href}`);
+---
+
+<header class="header">
+  <div class="header__fluid header__inner">
+    <a class="header__logo" href={hrefFor('#home')} aria-label="Amuy Menezes Advocacia — Início">
+      <img src="/images/logo.png" alt="Logo Amuy Menezes Advocacia" width="200" height="63" />
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <ul class="nav__list">
+        {navLinks.map((link) => (
+          <li><a class="nav__link" href={hrefFor(link.href)}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__phone" href={site.phone.href}>
+        <span class="header__phone-icon"><Icon name="phone" /></span>
+        <span>
+          <small>Fale Conosco</small>
+          <strong>{site.phone.label}</strong>
+        </span>
+      </a>
+      <a
+        class="btn header__cta"
+        href={whatsappLink(whatsappMessages.default)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="whatsapp" />
+        Agende sua Reunião
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobile-nav">
+  <div class="mobile-nav__overlay"></div>
+  <div class="mobile-nav__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="mobile-nav__head">
+      <img src="/images/logo.png" alt="Logo Amuy Menezes Advocacia" width="155" />
+      <button class="mobile-nav__close" aria-label="Fechar menu"><Icon name="x" /></button>
+    </div>
+    <ul class="mobile-nav__list">
+      {navLinks.map((link) => (
+        <li><a href={hrefFor(link.href)}>{link.label}<Icon name="arrow-right" /></a></li>
+      ))}
+    </ul>
+    <a
+      class="btn"
+      href={whatsappLink(whatsappMessages.default)}
+      target="_blank"
+      rel="noopener noreferrer"
+      style="justify-content:center"
+    >
+      <Icon name="whatsapp" />
+      Agende sua Reunião
+    </a>
+    <div class="mobile-nav__contact">
+      <a href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a>
+      <a href={site.phone.href}><Icon name="phone" />{site.phone.label}</a>
+    </div>
+  </div>
+</div>

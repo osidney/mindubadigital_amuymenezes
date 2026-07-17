@@ -1,0 +1,61 @@
+---
+import { practiceAreas, whatsappLink } from '../data/site';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const groupIcons = ['scale', 'file', 'users', 'shield'] as const;
+---
+
+<section class="practice section on-dark" id="atuacao">
+  <div class="practice__bg" style="background-image:url('/images/services-bg.jpg')"></div>
+  <div class="container">
+    <SectionTitle
+      center
+      kicker="Áreas de Atuação"
+      titleStart="A força da especialização"
+      titleScript="a seu favor"
+      lead="Duas frentes de atuação profundamente especializadas para defender o que é seu: seus benefícios e suas indenizações."
+    />
+
+    <div class="practice__tabs" role="tablist" aria-label="Áreas de atuação">
+      {practiceAreas.map((area, i) => (
+        <button
+          class:list={['practice__tab', { 'is-active': i === 0 }]}
+          role="tab"
+          aria-selected={i === 0}
+          data-target={`panel-${area.id}`}
+        >
+          <Icon name={i === 0 ? 'users' : 'shield'} />
+          {area.label}
+        </button>
+      ))}
+    </div>
+
+    {practiceAreas.map((area, i) => (
+      <div
+        class:list={['practice__panel', { 'is-active': i === 0 }]}
+        id={`panel-${area.id}`}
+        role="tabpanel"
+      >
+        <div class="practice__grid">
+          {area.groups.map((group, g) => (
+            <article class="practice__card">
+              <h3><Icon name={groupIcons[g % groupIcons.length]} />{group.title}</h3>
+              <ul class="check-list">
+                {group.items.map((item) => (
+                  <li><Icon name="check" />{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div class="practice__cta">
+          <a class="btn" href={whatsappLink(area.message)} target="_blank" rel="noopener noreferrer">
+            <Icon name="whatsapp" />
+            Tire suas Dúvidas
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

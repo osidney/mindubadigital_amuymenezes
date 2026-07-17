@@ -1,0 +1,119 @@
+---
+import { site, whatsappLink, whatsappMessages } from '../data/site';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+
+const waOptions = [
+  {
+    icon: 'users' as const,
+    title: 'Direito Previdenciário',
+    hint: 'Aposentadorias, benefícios do INSS, pensões e revisões',
+    message: whatsappMessages.previdenciario,
+  },
+  {
+    icon: 'shield' as const,
+    title: 'Direito Securitário',
+    hint: 'Seguros negados, indenizações e DPVAT',
+    message: whatsappMessages.securitario,
+  },
+  {
+    icon: 'file' as const,
+    title: 'Outro assunto',
+    hint: 'Conte seu caso para um especialista',
+    message: whatsappMessages.outro,
+  },
+];
+---
+
+<section class="contact section" id="contato">
+  <div class="container">
+    <SectionTitle
+      kicker="Contato"
+      titleStart="Fale conosco"
+      titleScript="sempre que desejar"
+      lead="Estamos prontos para ouvir o seu caso. Escolha o canal que preferir — a resposta começa agora."
+    />
+
+    <div class="contact__layout">
+      <div class="contact__cards reveal reveal--left">
+        {site.addresses.map((address) => (
+          <a class="contact-card" href={address.mapsUrl} target="_blank" rel="noopener noreferrer">
+            <span class="contact-card__icon"><Icon name="map-pin" /></span>
+            <div>
+              <h3>{address.label}</h3>
+              <p>{address.text}</p>
+              <p class="contact-card__note">Ver rota no mapa</p>
+            </div>
+          </a>
+        ))}
+
+        <a class="contact-card" href={site.phone.href}>
+          <span class="contact-card__icon"><Icon name="phone" /></span>
+          <div>
+            <h3>Telefone</h3>
+            <p>{site.phone.label}</p>
+            <p class="contact-card__note">Ligação e WhatsApp</p>
+          </div>
+        </a>
+
+        <a class="contact-card" href={`mailto:${site.email}`}>
+          <span class="contact-card__icon"><Icon name="mail" /></span>
+          <div>
+            <h3>E-mail</h3>
+            <p>{site.email}</p>
+            <p class="contact-card__note">Respondemos em breve</p>
+          </div>
+        </a>
+
+        <div class="contact__photo">
+          <img src="/images/contact-office.jpg" alt="Escritório Amuy Menezes Advocacia em Goiânia" width="663" height="422" loading="lazy" />
+        </div>
+
+        <div class="contact__social">
+          <a class="social-btn" href={site.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <Icon name="instagram" />
+          </a>
+          <a class="social-btn" href={site.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <Icon name="facebook" />
+          </a>
+          <a class="social-btn" href={site.social.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <Icon name="youtube" />
+          </a>
+        </div>
+      </div>
+
+      <div class="wa-panel reveal reveal--right" data-delay="1">
+        <span class="wa-panel__badge"><Icon name="whatsapp" />Atendimento Exclusivo</span>
+        <h3>Seu caso merece a atenção de um especialista.</h3>
+        <p>
+          Sem formulários nem espera: escolha o assunto e fale agora mesmo com a nossa
+          equipe pelo WhatsApp. A mensagem já vai pronta — é só enviar.
+        </p>
+
+        <div class="wa-panel__options">
+          {waOptions.map((option) => (
+            <a class="wa-option" href={whatsappLink(option.message)} target="_blank" rel="noopener noreferrer">
+              <span class="wa-option__icon"><Icon name={option.icon} /></span>
+              <span>
+                <strong>{option.title}</strong>
+                <small>{option.hint}</small>
+              </span>
+              <Icon name="arrow-right" class="wa-option__arrow" />
+            </a>
+          ))}
+        </div>
+
+        <div class="wa-panel__foot">
+          <a class="btn btn--whatsapp" href={whatsappLink(whatsappMessages.default)} target="_blank" rel="noopener noreferrer" style="width:100%;justify-content:center">
+            <Icon name="whatsapp" />
+            Quero Atendimento
+          </a>
+          <p class="wa-panel__hint">
+            <Icon name="check" />
+            Atendimento humano, direto no seu WhatsApp — {site.phone.label}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

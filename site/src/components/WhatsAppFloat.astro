@@ -1,0 +1,15 @@
+---
+import { whatsappLink, whatsappMessages } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<a
+  class="wa-float"
+  href={whatsappLink(whatsappMessages.default)}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Falar no WhatsApp"
+>
+  <Icon name="whatsapp" />
+  <span class="wa-float__tip">Fale conosco no WhatsApp</span>
+</a>

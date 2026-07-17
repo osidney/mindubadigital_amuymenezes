@@ -1,0 +1,40 @@
+---
+import { testimonials } from '../data/site';
+import SectionTitle from './SectionTitle.astro';
+import Icon from './Icon.astro';
+---
+
+<section class="testimonials section on-dark" id="depoimentos">
+  <div class="container">
+    <SectionTitle
+      center
+      kicker="Depoimentos"
+      titleStart="O que dizem nossos"
+      titleScript="melhores clientes"
+      lead="Histórias reais de quem confiou em nosso trabalho e garantiu seus direitos."
+    />
+
+    <div class="testimonials__grid">
+      {testimonials.map((t, i) => (
+        <article class="t-card reveal" data-delay={String(i)}>
+          <Icon name="quote" class="t-card__quote-icon" />
+          <div class="t-card__stars" aria-label="Avaliação: 5 de 5 estrelas">
+            {Array.from({ length: 5 }).map(() => <Icon name="star" />)}
+          </div>
+          <p class="t-card__text">{t.text}</p>
+          <div class="t-card__person">
+            <span class="t-card__avatar" aria-hidden="true">{t.initial}</span>
+            <div>
+              <p class="t-card__name">{t.name}</p>
+              <p class="t-card__role">{t.role}</p>
+            </div>
+          </div>
+          <a class="t-card__video" href={t.videoUrl} target="_blank" rel="noopener noreferrer">
+            <Icon name="play" />
+            Assista o depoimento
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
