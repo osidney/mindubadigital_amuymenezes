@@ -124,12 +124,13 @@ h1, h2, h3, h4 {
 
 .script {
   font-family: var(--font-script);
-  color: var(--gold-400);
+  color: var(--gold-700); /* dourado escuro: contraste 4.5+ em fundos claros */
   font-weight: 400;
   display: inline-block;
   transform: rotate(-2deg);
   padding-inline: 0.08em;
 }
+.on-dark .script { color: var(--gold-400); }
 
 .visually-hidden {
   position: absolute;
@@ -225,10 +226,10 @@ h1, h2, h3, h4 {
   font-weight: 800;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold-600);
+  color: var(--gold-700); /* contraste 4.5+ em fundos claros */
   margin-bottom: 1.1rem;
 }
-.sec-title__kicker svg { width: 1.35rem; height: 1.35rem; fill: var(--gold-500); }
+.sec-title__kicker svg { width: 1.35rem; height: 1.35rem; fill: var(--gold-700); }
 
 .on-dark .sec-title__kicker { color: var(--gold-300); }
 .on-dark .sec-title__kicker svg { fill: var(--gold-300); }
@@ -639,7 +640,7 @@ h1, h2, h3, h4 {
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold-600);
+  color: var(--gold-700);
 }
 .feature-card__link svg { width: 0.9rem; height: 0.9rem; transition: transform 0.3s var(--ease-out); }
 .feature-card__link:hover svg { transform: translateX(5px); }
@@ -765,7 +766,7 @@ h1, h2, h3, h4 {
 
 .skills { display: grid; gap: 1.05rem; margin-bottom: 2.2rem; }
 .skill__head { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.45rem; }
-.skill__head span:last-child { color: var(--gold-600); font-family: var(--font-display); font-size: 1rem; }
+.skill__head span:last-child { color: var(--gold-700); font-family: var(--font-display); font-size: 1rem; }
 .skill__bar { height: 6px; border-radius: 99px; background: rgba(29, 29, 36, 0.1); overflow: hidden; }
 .skill__fill {
   height: 100%;
@@ -953,7 +954,7 @@ h1, h2, h3, h4 {
 .contact-card h3 { font-size: 1.12rem; margin-bottom: 0.25rem; }
 .contact-card p, .contact-card a { color: var(--text-muted); font-size: 0.96rem; }
 .contact-card a:hover { color: var(--gold-600); }
-.contact-card__note { font-size: 0.8rem !important; margin-top: 0.35rem; color: var(--gold-600) !important; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.contact-card__note { font-size: 0.8rem !important; margin-top: 0.35rem; color: var(--gold-700) !important; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 
 .contact__social { display: flex; gap: 0.8rem; margin-top: 0.4rem; }
 
