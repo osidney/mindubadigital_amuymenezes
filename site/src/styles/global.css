@@ -1144,34 +1144,6 @@ h1, h2, h3, h4 {
 .wa-float:hover .wa-float__tip { opacity: 1; transform: translateY(-50%) translateX(0); }
 
 /* ============================================================
-   COOKIES
-   ============================================================ */
-.cookie-banner {
-  position: fixed;
-  left: 50%;
-  bottom: 1.2rem;
-  transform: translateX(-50%) translateY(calc(100% + 2rem));
-  z-index: 160;
-  width: min(100% - 2rem, 46rem);
-  background: rgba(12, 12, 14, 0.94);
-  color: var(--cream);
-  border: 1px solid rgba(235, 193, 125, 0.3);
-  border-radius: 1rem;
-  backdrop-filter: blur(12px);
-  padding: 1.3rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1.4rem;
-  flex-wrap: wrap;
-  box-shadow: var(--shadow-lg);
-  transition: transform 0.6s var(--ease-out);
-}
-.cookie-banner.is-visible { transform: translateX(-50%) translateY(0); }
-.cookie-banner p { font-size: 0.88rem; color: var(--text-light); flex: 1 1 24rem; }
-.cookie-banner a { color: var(--gold-300); text-decoration: underline; }
-.cookie-banner .btn { padding: 0.75rem 1.5rem; }
-
-/* ============================================================
    PÁGINAS LEGAIS
    ============================================================ */
 .legal-hero {
@@ -1250,7 +1222,6 @@ html.js .reveal[data-delay="3"] { transition-delay: 0.36s; }
   .footer__bar-inner { justify-content: center; text-align: center; }
   .hero__cta .btn { width: 100%; justify-content: center; }
   .hero__kicker { font-size: 0.75rem; letter-spacing: 0.2em; padding: 0.5rem 0.9rem; }
-  .cookie-banner .btn { width: 100%; justify-content: center; }
 }
 
 /* ---------- Movimento reduzido ---------- */

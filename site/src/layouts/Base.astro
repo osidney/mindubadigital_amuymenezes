@@ -5,7 +5,6 @@ import Sprite from '../components/Sprite.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppFloat from '../components/WhatsAppFloat.astro';
-import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title?: string;
@@ -88,7 +87,6 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     </main>
     <Footer />
     <WhatsAppFloat />
-    <CookieBanner />
 
     <script>
       // ---------- Header fixo com vidro ----------
@@ -191,19 +189,6 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
       document.querySelectorAll('[data-year]').forEach((el) => {
         el.textContent = String(new Date().getFullYear());
       });
-
-      // ---------- Banner de cookies ----------
-      const banner = document.querySelector('.cookie-banner');
-      const KEY = 'amuy-cookies-ok';
-      try {
-        if (banner && !localStorage.getItem(KEY)) {
-          window.setTimeout(() => banner.classList.add('is-visible'), 1800);
-        }
-        banner?.querySelector('button')?.addEventListener('click', () => {
-          localStorage.setItem(KEY, '1');
-          banner.classList.remove('is-visible');
-        });
-      } catch { /* localStorage indisponível */ }
     </script>
   </body>
 </html>
