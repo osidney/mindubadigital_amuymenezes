@@ -3,7 +3,7 @@ export const site = {
   shortName: 'Amuy Menezes',
   tagline: 'Proteger seu direito é garantir seu amanhã.',
   description:
-    'Agende sua reunião com especialistas em Direito Securitário e Direito Previdenciário. Proteger seu direito é garantir seu amanhã.',
+    'Escritório em Goiânia/GO especializado em Direito Securitário e Previdenciário: aposentadorias, benefícios do INSS, seguros e indenizações. Agende sua reunião.',
   url: 'https://www.amuymenezes.com.br',
   phone: {
     label: '(62) 98467-1617',

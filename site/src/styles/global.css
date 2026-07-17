@@ -308,7 +308,7 @@ h1, h2, h3, h4 {
   color: var(--gold-300);
 }
 .header__phone-icon svg { width: 1.05rem; height: 1.05rem; }
-.header__phone small { display: block; font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); }
+.header__phone small { display: block; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); }
 .header__phone strong { font-size: 0.98rem; font-weight: 700; letter-spacing: 0.02em; }
 .header__phone:hover strong { color: var(--gold-300); }
 
@@ -498,28 +498,39 @@ h1, h2, h3, h4 {
 }
 .hero__dots { display: flex; gap: 0.6rem; }
 .hero__dot {
-  width: 2.6rem; height: 3px;
+  position: relative;
+  width: 2.6rem;
+  height: 1.5rem; /* área de toque ampliada; a barra visual continua fina */
+  border-radius: 2px;
+}
+.hero__dot::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 3px;
+  transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.28);
   border-radius: 2px;
-  overflow: hidden;
-  position: relative;
 }
 .hero__dot::after {
   content: '';
-  position: absolute; inset: 0;
-  background: var(--gold-400);
-  transform: scaleX(0);
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 3px;
+  transform: translateY(-50%) scaleX(0);
   transform-origin: left;
+  background: var(--gold-400);
+  border-radius: 2px;
 }
 .hero__dot.is-active::after { animation: dot-progress var(--hero-delay, 7s) linear forwards; }
-@keyframes dot-progress { to { transform: scaleX(1); } }
+@keyframes dot-progress { to { transform: translateY(-50%) scaleX(1); } }
 
 .hero__scroll {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
   color: var(--gold-100);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   padding: 0.65rem 1.1rem;
@@ -987,7 +998,7 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 0.55rem;
   align-self: flex-start;
-  font-size: 0.74rem;
+  font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1238,7 +1249,7 @@ html.js .reveal[data-delay="3"] { transition-delay: 0.36s; }
   .footer__top { grid-template-columns: 1fr; gap: 2rem; }
   .footer__bar-inner { justify-content: center; text-align: center; }
   .hero__cta .btn { width: 100%; justify-content: center; }
-  .hero__kicker { font-size: 0.68rem; letter-spacing: 0.2em; padding: 0.5rem 0.9rem; }
+  .hero__kicker { font-size: 0.75rem; letter-spacing: 0.2em; padding: 0.5rem 0.9rem; }
   .cookie-banner .btn { width: 100%; justify-content: center; }
 }
 

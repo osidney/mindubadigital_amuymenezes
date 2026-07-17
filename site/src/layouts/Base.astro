@@ -25,6 +25,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0c0c0e" />
     <link rel="canonical" href={canonical} />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -38,8 +39,13 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta property="og:image" content={`${site.url}/images/og-image.jpg`} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Amuy Menezes Advocacia — Proteger seu direito é garantir seu amanhã" />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/images/og-image.jpg`} />
 
     <link rel="preload" href="/fonts/marcellus-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/plus-jakarta-sans-var.woff2" as="font" type="font/woff2" crossorigin />
