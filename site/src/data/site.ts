@@ -19,12 +19,6 @@ export const site = {
   },
   addresses: [
     {
-      label: 'Goiânia/GO',
-      text: 'Avenida T4, 619 — Sala 310, Setor Bueno',
-      mapsUrl:
-        'https://www.google.com/maps/search/?api=1&query=Avenida+T4+619+Sala+310+Setor+Bueno+Goi%C3%A2nia+GO',
-    },
-    {
       label: 'Inhumas/GO',
       text: 'Residencial Portal de Inhumas II, Rua 02, Qd. 06, Lt. 13 S/N',
       mapsUrl:
